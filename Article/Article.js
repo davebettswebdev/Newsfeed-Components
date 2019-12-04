@@ -85,6 +85,16 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+
+  {
+    title: "Hipster's Are Evil!",
+    date: 'Jan 1st, 2019',
+    firstParagraph: `Lorem ipsum dolor amet bitters blue bottle everyday carry ramps, seitan DIY freegan drinking vinegar health goth hammock tumeric         literally. Kitsch kogi schlitz shaman cloud bread bicycle rights intelligentsia, banjo mumblecore humblebrag. Locavore wayfarers tote bag microdosing pop-up craft beer palo santo, church-key marfa. Heirloom etsy lomo, PBR&B tumeric tousled hashtag kitsch. Humblebrag health goth franzen pork belly adaptogen. Tacos whatever artisan you probably haven't heard of them tumblr direct trade slow-carb bespoke keytar coloring book fixie pabst lomo iPhone.`,
+
+    secondParagraph: `Hoodie slow-carb VHS tumblr celiac tousled squid beard polaroid woke 90's try-hard air plant craft beer. Neutra mlkshk YOLO venmo swag edison bulb biodiesel next level heirloom chambray flexitarian microdosing affogato vinyl cliche. Green juice cornhole gentrify typewriter, activated charcoal wolf beard cold-pressed. Irony stumptown disrupt organic beard wolf tofu migas swag.`,
+
+    thirdParagraph: `Banjo umami venmo tousled pok pok farm-to-table edison bulb gentrify direct trade distillery, echo park brunch yuccie. Cronut tbh godard echo park +1 hot chicken prism activated charcoal poutine cornhole deep v heirloom. Chambray flannel franzen quinoa beard, plaid meggings cloud bread bicycle rights fixie sriracha pabst. Literally ethical shaman, VHS single-origin coffee hashtag crucifix vexillologist synth four dollar toast tofu. Authentic thundercats palo santo vape. Hashtag gastropub cold-pressed schlitz polaroid, poke drinking vinegar you probably haven't heard of them deep v tote bag pug flannel. Blue bottle keffiyeh chicharrones yuccie before they sold out tattooed stumptown shoreditch adaptogen banjo cold-pressed la croix pork belly.`
   }
 ];
 
@@ -112,3 +122,57 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
 */
+
+const schoolFeed = document.querySelector('.articles');
+
+data.map(info => {
+  schoolFeed.appendChild(makeArticles(info.title, info.date, info.firstParagraph, info.secondParagraph, info.thirdParagraph));
+})
+
+function makeArticles(title, date, firstParagraph, secondParagraph, thirdParagraph){
+
+  // Elements
+
+  const mainArticle = document.createElement('div');
+  const articleTitle = document.createElement('h2');
+  const articleDate = document.createElement('p');
+  const firstp = document.createElement('p');
+  const secondp = document.createElement('p');
+  const thirdp = document.createElement('p');
+  const mainButton = document.createElement('span');
+ 
+
+  // Classes
+
+  mainArticle.classList.add('article');
+  articleDate.classList.add('date');
+  mainButton.classList.add('expandButton');
+  
+
+  // Structure
+
+  mainArticle.appendChild(articleTitle);
+  mainArticle.appendChild(articleDate);
+  mainArticle.appendChild(firstp);
+  mainArticle.appendChild(secondp);
+  mainArticle.appendChild(thirdp);
+  mainArticle.appendChild(mainButton);
+  
+
+  // Content
+
+  articleTitle.textContent = title;
+  articleDate.textContent = date;
+  firstp.textContent = firstParagraph;
+  secondp.textContent = secondParagraph;
+  thirdp.textContent = thirdParagraph;
+  mainButton.textContent = 'Lets get started!';
+
+  mainButton.addEventListener('click', () => {
+    mainArticle.classList.toggle('article-open');
+  });
+
+  return mainArticle;
+}
+
+
